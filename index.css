@@ -6,7 +6,7 @@
   font-family: 'Cabin Sketch', cursive;
   font-size: 50px;
 }
-.button-container {
+#button-container {
   display: flex;
   margin: 10px;
 }

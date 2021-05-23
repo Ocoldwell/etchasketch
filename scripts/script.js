@@ -1,31 +1,17 @@
-const container = document.getElementById('grid-container');
-const resetButton = document.getElementById('reset-button');
-const sizeButton = document.getElementById('size-button');
-const eraserBtn = document.getElementById('eraser');
-const grayBtn = document.getElementById('pen');
-const randomBtn = document.getElementById('random');
-const colorBtn = document.getElementById('color');
+const container = document.getElementById("grid-container");
+const buttonContainer = document.getElementById("button-container");
 
-let color = "rgba(0,0,0,1)";
-const buttonState= {
-  isDefault: true,
-  isErase: false,
-  isPenMode: false,
-  isRainbow: false,
-  isColorPicker: false
-}
-
-
+let ink = "black";
 const createGrid = (size) => {
   size = size || 16;
   const gridSize = size * size;
-  container.style.setProperty('--grid-rows', size);
-  container.style.setProperty('--grid-cols', size);
+  container.style.setProperty("--grid-rows", size);
+  container.style.setProperty("--grid-cols", size);
   for (let i = 0; i < gridSize; i++) {
     let cell = document.createElement("div");
     cell.setAttribute("class", "cell");
     cell.setAttribute("id", `${i}`);
-    cell.addEventListener('mouseover', changeColor);
+    cell.addEventListener("mouseover", cellColor);
     container.appendChild(cell);
   }
 };
@@ -33,23 +19,60 @@ const createGrid = (size) => {
 const sizeOfGrid = () => {
   let size = Number(prompt("Enter size here (no greater than 100): "));
   createGrid(size);
-}
+};
 const resetGrid = () => {
-    let cells = document.querySelectorAll(".cell");
-    cells.forEach((cell) => cell.remove());
-    createGrid();
+  let cells = document.querySelectorAll(".cell");
+  cells.forEach((cell) => cell.remove());
+  createGrid();
 };
 
-const changeColor = (e) => {
-  if (e.target.classList == 'cell') {
-    defaultEtch(e);
-  }
-}
+const cellColor = (e) => {
+  e.target.style.backgroundColor = ink;
+ }
+
+const randomRGB = () => {
+    return Math.floor(Math.random() * 256);
+  };
+
+const rainbowGenerator = () => {
+  return `rgba(${randomRGB()}, ${randomRGB()}, ${randomRGB()})`;
+};
 
 const defaultEtch = (e) => {
-  return e.target.style.backgroundColor = color;
-}
+  e.target.style.backgroundColor = "black"
+};
 
-resetButton.addEventListener('click', resetGrid)
-sizeButton.addEventListener('click', sizeOfGrid)
+const eraseEtch = () => {
+  return container.style.backgroundColor;
+};
+
+//Click Handler using inheritance.
+const handleClick = (e) => {
+  switch (e.target.value) {
+    case "reset":
+      resetGrid();
+      break;
+    case "resize":
+      sizeOfGrid();
+      break;
+    case "erase":
+      ink = eraseEtch()
+      break;
+    case "pen":
+    
+      break;
+    case "rainbow":
+      
+      break;
+    case "color":
+     
+      break;
+    case "default":
+      break;
+  }
+};
+buttonContainer.addEventListener("click", handleClick);
+// resetButton.addEventListener('click', resetGrid)
+// sizeButton.addEventListener('click', sizeOfGrid)
+// eraserButton.addEventListener('click', eraseColor)
 createGrid();
