@@ -1,34 +1,33 @@
-class Grid {
-  container = document.querySelector('#grid-container');
-  columns;
-  rows;
-  gridSize;
-  setGridSize =(columns, rows)=> {
-    this.columns = 16 || columns;
-    this.rows = 16 || rows;
-    this.gridSize = this.columns *this.rows;
-  }
-
-  createGrid = () => {
-    container.style.setProperty('--grid-rows', this.rows);
-    container.style.setProperty('--grid-columns', this.columns);
-    for (let i = 0; i < (this.gridSize); i++) {
-      let cell = document.createElement('div');
-      cell.setAttribute("class","cell");
-      cell.setAttribute("id", `${i}`);
-      cell.addEventListener('mouseover', setColor);
-      this.container.appendChild(cell);
-    }
-  }
-
-  clearGrid = () => {
-    size = Number(prompt('How many rows would you like?</br>(The max is 100.)'))
-    if (size <= 100) {
-        let cells = document.querySelectorAll(".cell")
-        cells.forEach(cube => cube.remove());
-        this.createGrid(size)
-    } else {
-        alert("Grid size can't be larger than 100")
-    }
+const container = document.getElementById('grid-container')
+const createGrid = (size) => {
+  size = size || 16;
+  const gridSize = size * size;
+  container.style.setProperty('--grid-rows', size);
+  container.style.setProperty('--grid-cols', size);
+  for (let i = 0; i < gridSize; i++) {
+    let cell = document.createElement("div");
+    cell.setAttribute("class", "cell");
+    cell.setAttribute("id", `${i}`);
+    cell.addEventListener('mouseover', changeColor);
+    container.appendChild(cell);
   }
 };
+
+const clearGrid = () => {
+  size = Number(prompt("How many rows would you like?</br>(The max is 100.)"));
+  if (size <= 100) {
+    let cells = document.querySelectorAll(".cell");
+    cells.forEach((cell) => cell.remove());
+    this.createGrid(size);
+  } else {
+    alert("Grid size can't be larger than 100");
+  }
+};
+
+const changeColor = (e) => {
+  if (e.target.classList == 'cell') {
+    e.target.style.backgroundColor = 'black';
+  }
+}
+
+createGrid();
