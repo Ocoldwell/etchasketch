@@ -1,5 +1,6 @@
 const container = document.getElementById('grid-container');
 const resetButton = document.getElementById('reset-button');
+
 const createGrid = (size) => {
   size = size || 16;
   const gridSize = size * size;
@@ -15,7 +16,7 @@ const createGrid = (size) => {
 };
 
 const clearGrid = () => {
-  let size = Number(prompt("How many rows would you like?</br>(The max is 100.)"));
+  let size = Number(prompt("What size grid would you like?(The max is 100 x 100)"));
   if (size <= 100) {
     let cells = document.querySelectorAll(".cell");
     cells.forEach((cell) => cell.remove());
