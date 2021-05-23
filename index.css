@@ -5,8 +5,8 @@
 
 #grid-container {
   display: grid;
-  height: 80vh;
-  width: 50%;
+  height: 600px;
+  width: 600px;
   border: 1px grey solid;
   padding: 1em;
   gap: 1.5px;

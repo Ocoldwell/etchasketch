@@ -1,4 +1,5 @@
-const container = document.getElementById('grid-container')
+const container = document.getElementById('grid-container');
+const resetButton = document.getElementById('reset-button');
 const createGrid = (size) => {
   size = size || 16;
   const gridSize = size * size;
@@ -14,11 +15,11 @@ const createGrid = (size) => {
 };
 
 const clearGrid = () => {
-  size = Number(prompt("How many rows would you like?</br>(The max is 100.)"));
+  let size = Number(prompt("How many rows would you like?</br>(The max is 100.)"));
   if (size <= 100) {
     let cells = document.querySelectorAll(".cell");
     cells.forEach((cell) => cell.remove());
-    this.createGrid(size);
+    createGrid(size);
   } else {
     alert("Grid size can't be larger than 100");
   }
@@ -30,4 +31,9 @@ const changeColor = (e) => {
   }
 }
 
+const defaultEtch = () => {
+  e.target.style.backgroundColor = 'black'
+}
+
+resetButton.addEventListener('click', clearGrid)
 createGrid();
