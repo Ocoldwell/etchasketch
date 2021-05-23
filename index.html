@@ -6,13 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Etch-A-Sketch</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
-    <script src="./script.js" type="module" async defer></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./scripts/script.js" type="module" async defer></script>
   </head>
   <body>
     <main class="content-holder">
-      <h1>Etch A Sketch</h1>
+      <h1 class="title">Etch A Sketch</h1>
+      <div class="button-container">
+        <button type="button" id="reset-button">Reset Grid</button>
+        <button type="button" id="size-button">Size</button>
+        <button type="button" id="eraser">Erase</button>
+        <button type="button" id="pen">Pen Mode</button>
+        <button type="button" id="random">Rainbow</button>
+        <button type="button" id="color">Pick a color</button>
+      </div>
       <div id="grid-container"></div>
-      <button type="button" id="reset-button" >Reset Grid</button>
     </main>
   </body>
 </html>
