@@ -2,20 +2,27 @@
   --grid-cols: 1;
   --grid-rows: 1;
 }
-
+.title {
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 50px;
+}
+#button-container {
+  display: flex;
+  margin: 10px;
+}
 #grid-container {
   display: grid;
   height: 600px;
   width: 600px;
-  border: 1px grey solid;
-  padding: 1em;
-  gap: 1.5px;
+  border: 1px black solid;
   grid-template-rows: repeat(var(--grid-rows), 1fr);
   grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
 
 .cell {
-  border: 1px grey solid;
+  margin: 0px;
+  padding: 0px;
+  background: grey;
 }
 
 .content-holder {
