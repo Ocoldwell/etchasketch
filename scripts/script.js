@@ -1,16 +1,21 @@
 const container = document.getElementById("grid-container");
 const buttonContainer = document.getElementById("button-container");
 
+const buttonState= {
+  'rainbow': false,
+  'default': true,
+  'pen': false,
+  'erase': false
+}
 const toRGBA=(red, green, blue, alpha = 1.0)=> {
   return `rgba(${red}, ${green}, ${blue}, ${alpha})`
 }
-let ink = toRGBA(0, 0, 0);
 
 const randomRGB = () => {
     return Math.floor(Math.random() * 256);
   };
 
-const rainbowGenerator = (e) => {
+const rainbowEtch = (e) => {
   e.target.style.backgroundColor = toRGBA(randomRGB(),randomRGB(), randomRGB());
 };
 
@@ -39,18 +44,35 @@ const resetGrid = () => {
 };
 
 const drawColor = (e) => {
-  rainbowGenerator(e);
+ if (buttonState.default) {
+   defaultEtch(e);
+ } else if (buttonState.rainbow) {
+   rainbowEtch(e)
+ } else if (buttonState.pen) {
+   penEtch(e);
+ } else if (buttonState.erase) {
+   eraseEtch(e)
+ }
  }
 
 
-const defaultEtch = () => {
-  ink = "black"
+const defaultEtch = (e) => {
+  e.target.style.backgroundColor = "black";
 };
 
-const eraseEtch = () => {
-  ink = container.style.backgroundColor;
+const eraseEtch = (e) => {
+  e.target.style.backgroundColor = container.style.backgroundColor;
 };
-
+// This handles the value to be entered on each button press which allows for an extensible handler.
+const buttonStateHandle = (e) => {
+  for (const [key] of Object.entries(buttonState)) {
+    if (key != e.target.value) {
+     buttonState[key] = false;
+    } else {
+     buttonState[key] = true;
+    }
+  }
+}
 //Click Handler using inheritance.
 const handleClick = (e) => {
   switch (e.target.value) {
@@ -61,24 +83,18 @@ const handleClick = (e) => {
       sizeOfGrid();
       break;
     case "erase":
-      eraseEtch()
+      buttonStateHandle(e);
       break;
     case "pen":
-    
+      buttonStateHandle(e);
       break;
     case "rainbow":
-      rainbowGenerator()
-      break;
-    case "color":
-     
+      buttonStateHandle(e);
       break;
     case "default":
-      defaultEtch()
+      buttonStateHandle(e);
       break;
   }
 };
 buttonContainer.addEventListener("click", handleClick);
-// resetButton.addEventListener('click', resetGrid)
-// sizeButton.addEventListener('click', sizeOfGrid)
-// eraserButton.addEventListener('click', eraseColor)
 createGrid();
