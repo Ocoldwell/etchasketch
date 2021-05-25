@@ -1,27 +1,31 @@
 const container = document.getElementById("grid-container");
 const buttonContainer = document.getElementById("button-container");
 
-const buttonState= {
-  'rainbow': false,
-  'default': true,
-  'pen': false,
-  'erase': false
-}
+const buttonState = {
+  rainbow: false,
+  default: true,
+  pen: false,
+  erase: false,
+};
 
-const toRGBA=(red, green, blue, alpha = 1.0)=> {
-  return `rgba(${red}, ${green}, ${blue}, ${alpha})`
-}
+const toRGBA = (red, green, blue, alpha = 1.0) => {
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+};
 
 const randomRGB = () => {
-    return Math.floor(Math.random() * 256);
-  };
+  return Math.floor(Math.random() * 256);
+};
 
 const rainbowEtch = (e) => {
-  e.target.style.backgroundColor = toRGBA(randomRGB(),randomRGB(), randomRGB());
+  e.target.style.backgroundColor = toRGBA(
+    randomRGB(),
+    randomRGB(),
+    randomRGB()
+  );
 };
 
 const createGrid = (size) => {
-  size = size || 16;
+  size = size || 30;
   const gridSize = size * size;
   container.style.setProperty("--grid-rows", size);
   container.style.setProperty("--grid-cols", size);
@@ -45,19 +49,30 @@ const resetGrid = () => {
 };
 
 const drawColor = (e) => {
- if (buttonState.default) {
-   defaultEtch(e);
- } else if (buttonState.rainbow) {
-   rainbowEtch(e)
- } else if (buttonState.pen) {
-   penEtch(e);
- } else if (buttonState.erase) {
-   eraseEtch(e)
- }
- }
+  if (buttonState.default) {
+    defaultEtch(e);
+  } else if (buttonState.rainbow) {
+    rainbowEtch(e);
+  } else if (buttonState.pen) {
+    penEtch(e);
+  } else if (buttonState.erase) {
+    eraseEtch(e);
+  }
+};
 
 const defaultEtch = (e) => {
-  e.target.style.backgroundColor = "black";
+  e.target.style.backgroundColor = toRGBA(0, 0, 0, 0.99);
+};
+
+const penEtch = (e) => {
+  console.log(e.target.style.backgroundColor)
+  let firstColour = e.target.style.backgroundColor.slice(5, -1).split(",").map(el => {
+    return (+el + 0.1);
+  })
+  let newOpacity= firstColour[0] + 0.1;
+  console.log(newOpacity);
+  e.target.style.backgroundColor = toRGBA(0, 0, 0, newOpacity);
+  console.log(e.target.style.backgroundColor);
 };
 
 const eraseEtch = (e) => {
@@ -67,12 +82,12 @@ const eraseEtch = (e) => {
 const buttonStateHandle = (e) => {
   for (const [key] of Object.entries(buttonState)) {
     if (key != e.target.value) {
-     buttonState[key] = false;
+      buttonState[key] = false;
     } else {
-     buttonState[key] = true;
+      buttonState[key] = true;
     }
   }
-}
+};
 
 const handleClick = (e) => {
   switch (e.target.value) {
