@@ -1,6 +1,24 @@
 const container = document.getElementById("grid-container");
 const buttonContainer = document.getElementById("button-container");
 
+const buttonState= {
+  'rainbow': false,
+  'default': true,
+  'pen': false,
+  'erase': false
+}
+const toRGBA=(red, green, blue, alpha = 1.0)=> {
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`
+}
+
+const randomRGB = () => {
+    return Math.floor(Math.random() * 256);
+  };
+
+const rainbowEtch = (e) => {
+  e.target.style.backgroundColor = toRGBA(randomRGB(),randomRGB(), randomRGB());
+};
+
 const createGrid = (size) => {
   size = size || 16;
   const gridSize = size * size;
@@ -19,28 +37,24 @@ const sizeOfGrid = () => {
   let size = Number(prompt("Enter size here (no greater than 100): "));
   createGrid(size);
 };
-
 const resetGrid = () => {
   let cells = document.querySelectorAll(".cell");
   cells.forEach((cell) => cell.remove());
   createGrid();
 };
 
-const toRGBA = (red, green, blue, alpha = 1.0) => {
-  return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
-};
+const drawColor = (e) => {
+ if (buttonState.default) {
+   defaultEtch(e);
+ } else if (buttonState.rainbow) {
+   rainbowEtch(e)
+ } else if (buttonState.pen) {
+   penEtch(e);
+ } else if (buttonState.erase) {
+   eraseEtch(e)
+ }
+ }
 
-const randomRGB = () => {
-  return Math.floor(Math.random() * 256);
-};
-
-const rainbowEtch = (e) => {
-  e.target.style.backgroundColor = toRGBA(
-    randomRGB(),
-    randomRGB(),
-    randomRGB()
-  );
-};
 
 const defaultEtch = (e) => {
   e.target.style.backgroundColor = "black";
@@ -49,36 +63,17 @@ const defaultEtch = (e) => {
 const eraseEtch = (e) => {
   e.target.style.backgroundColor = container.style.backgroundColor;
 };
-
-const drawColor = (e) => {
-  if (buttonState.default) {
-    defaultEtch(e);
-  } else if (buttonState.rainbow) {
-    rainbowEtch(e);
-  } else if (buttonState.pen) {
-    penEtch(e);
-  } else if (buttonState.erase) {
-    eraseEtch(e);
-  }
-};
-
-const buttonState = {
-  rainbow: false,
-  default: true,
-  pen: false,
-  erase: false,
-};
-
+// This handles the value to be entered on each button press which allows for an extensible handler.
 const buttonStateHandle = (e) => {
   for (const [key] of Object.entries(buttonState)) {
     if (key != e.target.value) {
-      buttonState[key] = false;
+     buttonState[key] = false;
     } else {
-      buttonState[key] = true;
+     buttonState[key] = true;
     }
   }
-};
-
+}
+//Click Handler using inheritance.
 const handleClick = (e) => {
   switch (e.target.value) {
     case "reset":
@@ -101,6 +96,5 @@ const handleClick = (e) => {
       break;
   }
 };
-
 buttonContainer.addEventListener("click", handleClick);
 createGrid();
