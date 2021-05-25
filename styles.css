@@ -1,0 +1,74 @@
+:root {
+  --grid-cols: 1;
+  --grid-rows: 1;
+}
+* {
+  margin: 0;
+  padding: 0;
+  background-color: #D5DCF9;
+}
+
+.title {
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 60px;
+  letter-spacing: 0.6em;
+  color: tomato;
+}
+
+.button {
+  border: grey 1px solid;
+  border-radius: 10px;
+  height: auto;
+  width: 100px;
+  padding: 10px;
+  margin: 5px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: tomato;
+  color: whitesmoke;
+  box-shadow: 0 9px 18px 0 #333333, 0 8px 24px 0 #333333;
+}
+.button:hover {
+  box-shadow: 0 14px 18px 0 #333333, 0 17px 50px 0 #333333;
+}
+#button-container {
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+  width: 100%;
+}
+#grid-container {
+  display: grid;
+  height: 600px;
+  width: 600px;
+  border-radius: 40px;
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  box-shadow: 0 14px 18px 0 #333333, 0 17px 20px 0 #333333;
+}
+.cell {
+  background: ghostwhite;
+}
+.content-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+@media only screen and (max-width: 800px) {
+  #grid-container {
+    height: 360px;
+    width: 360px
+  }
+  .title {
+    font-size: 45px;
+    padding: 10px;
+  }
+  .button{
+    padding: 2px;
+    margin: 5px;
+    height: auto;
+    width: auto;
+  }
+}

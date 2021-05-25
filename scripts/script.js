@@ -7,6 +7,7 @@ const buttonState= {
   'pen': false,
   'erase': false
 }
+
 const toRGBA=(red, green, blue, alpha = 1.0)=> {
   return `rgba(${red}, ${green}, ${blue}, ${alpha})`
 }
@@ -55,7 +56,6 @@ const drawColor = (e) => {
  }
  }
 
-
 const defaultEtch = (e) => {
   e.target.style.backgroundColor = "black";
 };
@@ -63,7 +63,7 @@ const defaultEtch = (e) => {
 const eraseEtch = (e) => {
   e.target.style.backgroundColor = container.style.backgroundColor;
 };
-// This handles the value to be entered on each button press which allows for an extensible handler.
+
 const buttonStateHandle = (e) => {
   for (const [key] of Object.entries(buttonState)) {
     if (key != e.target.value) {
@@ -73,7 +73,7 @@ const buttonStateHandle = (e) => {
     }
   }
 }
-//Click Handler using inheritance.
+
 const handleClick = (e) => {
   switch (e.target.value) {
     case "reset":
