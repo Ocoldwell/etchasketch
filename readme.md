@@ -29,4 +29,4 @@ The size parameter is set at 16 as requested in the challenge by default due to 
   grid-template-columns: repeat(var(--grid-cols), 1fr);
 ```
 
-More to come on color generation.
+More to come on color generation, finished rainbow function and got my click handler working how I want it. Next stop is the pencil mode, which in theory I can use some of my other functions to make it easier by iteratively increasing the alpha. Colour picker is the last functionality I want to add.
