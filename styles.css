@@ -5,11 +5,11 @@
 * {
   margin: 0;
   padding: 0;
-  background-color: #D5DCF9;
+  background-color: #d5dcf9;
 }
 
 .title {
-  font-family: 'Cabin Sketch', cursive;
+  font-family: "Cabin Sketch", cursive;
   font-size: 60px;
   letter-spacing: 0.6em;
   color: tomato;
@@ -22,7 +22,7 @@
   width: 100px;
   padding: 10px;
   margin: 5px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   background-color: tomato;
   color: whitesmoke;
   box-shadow: 0 9px 18px 0 #333333, 0 8px 24px 0 #333333;
@@ -46,7 +46,7 @@
   box-shadow: 0 14px 18px 0 #333333, 0 17px 20px 0 #333333;
 }
 .cell {
-  background: rgba(255,255,255, 1)
+  background: rgba(255, 255, 255, 1);
 }
 .content-holder {
   display: flex;
@@ -59,13 +59,13 @@
 @media only screen and (max-width: 800px) {
   #grid-container {
     height: 360px;
-    width: 360px
+    width: 360px;
   }
   .title {
     font-size: 45px;
     padding: 10px;
   }
-  .button{
+  .button {
     padding: 2px;
     margin: 5px;
     height: auto;
