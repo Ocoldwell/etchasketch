@@ -61,18 +61,18 @@ const drawColor = (e) => {
 };
 
 const defaultEtch = (e) => {
-  e.target.style.backgroundColor = toRGBA(0, 0, 0, 0.99);
+  e.target.style.backgroundColor = toRGBA(0, 0, 0, 1);
 };
 
 const penEtch = (e) => {
-  console.log(e.target.style.backgroundColor)
   let firstColour = e.target.style.backgroundColor.slice(5, -1).split(",").map(el => {
-    return (+el + 0.1);
+    return (+el);
   })
-  let newOpacity= firstColour[0] + 0.1;
-  console.log(newOpacity);
+  let newOpacity=firstColour.reduce((acc, currentValue) => acc + currentValue
+  )+0.1;
+  
   e.target.style.backgroundColor = toRGBA(0, 0, 0, newOpacity);
-  console.log(e.target.style.backgroundColor);
+  console.log(e.target.style.backgroundColor)
 };
 
 const eraseEtch = (e) => {
