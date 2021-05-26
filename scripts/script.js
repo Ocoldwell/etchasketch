@@ -1,5 +1,6 @@
 const container = document.getElementById("grid-container");
 const buttonContainer = document.getElementById("button-container");
+const colourPicker = document.getElementById("colour-picker");
 
 const buttonState = {
   rainbow: false,
@@ -42,6 +43,7 @@ const sizeOfGrid = () => {
   let size = Number(prompt("Enter size here (no greater than 100): "));
   createGrid(size);
 };
+
 const resetGrid = () => {
   let cells = document.querySelectorAll(".cell");
   cells.forEach((cell) => cell.remove());
@@ -57,6 +59,8 @@ const drawColor = (e) => {
     penEtch(e);
   } else if (buttonState.erase) {
     eraseEtch(e);
+  } else if (buttonState.colour) {
+    console.log(e.style.backgroundColor)
   }
 };
 
@@ -74,7 +78,6 @@ const penEtch = (e) => {
   let newOpacity =
     firstColour.reduce((acc, currentValue) => acc + currentValue) + 0.1;
   e.target.style.backgroundColor = toRGBA(0, 0, 0, newOpacity);
-  console.log(e.target.style.backgroundColor);
 };
 
 const eraseEtch = (e) => {
