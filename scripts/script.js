@@ -1,6 +1,5 @@
 const container = document.getElementById("grid-container");
 const buttonContainer = document.getElementById("button-container");
-const colourPicker = document.getElementById("colour-picker");
 
 const buttonState = {
   rainbow: false,
