@@ -29,4 +29,20 @@ The size parameter is set at 16 as requested in the challenge by default due to 
   grid-template-columns: repeat(var(--grid-cols), 1fr);
 ```
 
-More to come on color generation, finished rainbow function and got my click handler working how I want it. Next stop is the pencil mode, which in theory I can use some of my other functions to make it easier by iteratively increasing the alpha. Colour picker is the last functionality I want to add.
+I decided that to set modes I'd track the state of my buttons, so I created an object containing booleans and this would be changed using this function that I think is suitably modular that I'd be able to re-use it anywhere.
+
+```Javascript
+  const buttonStateHandle = (e) => {
+  for (const [key] of Object.entries(buttonState)) {
+    if (key != e.target.value) {
+      buttonState[key] = false;
+    } else {
+      buttonState[key] = true;
+    }
+  }
+};
+```
+
+I used inheritance so I didn't have to declare an event listener on each button, so I placed an event listener on the container.
+For the rainbow generation I created multiple little functions that performed tasks, so if I were to refer back to this code I could utilise them again.
+The pen function proved to be a little trickier for me and there are some bugs I need to iron out.
