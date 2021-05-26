@@ -1,5 +1,5 @@
 # Etch-A-Sketch
-
+[![CodeFactor](https://www.codefactor.io/repository/github/ocoldwell/etchasketch/badge/master)](https://www.codefactor.io/repository/github/ocoldwell/etchasketch/overview/master)
 I wanted to practice my Vanilla Javascript and DOM manipulation skills so I decided to do this project from The Odin Project.
 I was a little rusty and it was good to practice DOM manipulation. I had originally decided on trying a class based approach
 but on reflection found the functional approach to be cleaner.
